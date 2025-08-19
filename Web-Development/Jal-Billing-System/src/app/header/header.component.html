@@ -1,0 +1,67 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened="">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        (click)="drawer.toggle()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span></span>
+      <span class="example-spacer">
+        <div class="title">
+          <h2 class="title-heading">JAL</h2>
+        </div>
+      </span>
+      <!-- <nav>
+        <div class="container-fluid">
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </nav> -->
+      <button
+        mat-icon-button
+        class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon"
+        matTooltip="Stock Alert"
+        matTooltipPosition="above"
+        routerLink="/stock-alert"
+      >
+        <mat-icon class="alert-icon" color="warn"
+          >notification_important</mat-icon
+        >
+      </button>
+
+      <button
+        mat-icon-button
+        color="primary"
+        matTooltip="Logout"
+        aria-label="Logout"
+        mat-icon-button
+        class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon"
+        (click)="logout()"
+      >
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="app-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

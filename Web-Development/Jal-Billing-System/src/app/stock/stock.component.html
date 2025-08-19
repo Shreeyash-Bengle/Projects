@@ -1,0 +1,234 @@
+<div class="container">
+  <div class="header-section">
+    <div class="header-content">
+      <h2 class="main-title">
+        <mat-icon class="header-icon">inventory_2</mat-icon>
+        Stock Management
+      </h2>
+      <p class="header-subtitle">Manage your inventory and stock items</p>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button
+      (click)="filterProductList('Parent')"
+      matTooltip="Shows parent products"
+      matTooltipPosition="above"
+    >
+      Parent Products
+    </button>
+
+    <button
+      (click)="filterProductList('Child')"
+      matTooltip="Shows child products"
+      matTooltipPosition="above"
+    >
+      Child Products
+    </button>
+
+    <button
+      (click)="filterProductList('All')"
+      matTooltip="Shows all products"
+      matTooltipPosition="above"
+    >
+      Show All Data
+    </button>
+
+    <button
+      (click)="showAddStockForm = !showAddStockForm"
+      class="add-new-stock-button"
+      matTooltip="Add new stock"
+      matTooltipPosition="above"
+    >
+      Add New Stock
+    </button>
+
+    <button
+      class="add-new-stock-button"
+      matTooltip="Stock Alert"
+      routerLink="/stock-alert"
+      matTooltipPosition="above"
+    >
+      Stock Alert
+    </button>
+  </div>
+
+  <div *ngIf="showAddStockForm" class="add-stock-form">
+    <form #form="ngForm" (ngSubmit)="addNewStock(form)">
+      <h3>Add New Stock</h3>
+
+      <input
+        type="text"
+        name="description"
+        placeholder="Name"
+        [(ngModel)]="newStock.description"
+        required
+      />
+      <input
+        type="text"
+        name="supplier"
+        placeholder="Supplier Name"
+        [(ngModel)]="newStock.supplier"
+        required
+      />
+      <input
+        type="number"
+        name="price"
+        placeholder="Price"
+        [(ngModel)]="newStock.price"
+        required
+      />
+
+      <input
+        type="text"
+        name="hsn_code"
+        placeholder="HSN No"
+        [(ngModel)]="newStock.hsn_code"
+        required
+      />
+      <select name="stock_type" [(ngModel)]="newStock.stock_type" required>
+        <option value="Parent">Parent</option>
+        <option value="Child">Child</option>
+      </select>
+
+      <input
+        type="number"
+        name="quantity"
+        placeholder="Quantity"
+        [(ngModel)]="newStock.quantity"
+        required
+      />
+
+      <div class="button-container">
+        <button type="submit" matTooltip="Add stock" matTooltipPosition="above">
+          Add Stock
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="search-container">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search Stock</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchFilter"
+        (keyup)="applyFilters()"
+        placeholder="Search by name or HSN number"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-hint>Enter product name or HSN number to search</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <h3 class="heading">Selected Products</h3>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>S. No</th>
+          <th>Name</th>
+          <th>Supplier Name</th>
+          <th>Price (₹)</th>
+          <th>HSN No</th>
+          <th>Stock Type</th>
+          <th>Quantity</th>
+          <th>Total (₹)</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let product of filteredProductList; let i = index"
+          [id]="'product-' + i"
+        >
+          <td>{{ i + 1 }}</td>
+          <td>
+            <input
+              *ngIf="editingIndex === i"
+              type="text"
+              [(ngModel)]="product.description"
+              class="edit-input"
+            />
+            <span *ngIf="editingIndex !== i">{{ product.description }}</span>
+          </td>
+          <td>
+            <input
+              *ngIf="editingIndex === i"
+              type="text"
+              [(ngModel)]="product.supplier"
+              class="edit-input"
+            />
+            <span *ngIf="editingIndex !== i">{{ product.supplier }}</span>
+          </td>
+          <td>
+            <input
+              *ngIf="editingIndex === i"
+              type="number"
+              [(ngModel)]="product.price"
+              class="edit-input"
+            />
+            <span *ngIf="editingIndex !== i">₹{{ product.price }}</span>
+          </td>
+          <td>
+            <input
+              *ngIf="editingIndex === i"
+              type="text"
+              [(ngModel)]="product.hsn_code"
+              class="edit-input"
+            />
+            <span *ngIf="editingIndex !== i">{{ product.hsn_code }}</span>
+          </td>
+          <td>
+            <select
+              *ngIf="editingIndex === i"
+              [(ngModel)]="product.stock_type"
+              class="edit-input"
+            >
+              <option value="Parent">Parent</option>
+              <option value="Child">Child</option>
+            </select>
+            <span *ngIf="editingIndex !== i">{{ product.stock_type }}</span>
+          </td>
+          <td>
+            <input
+              type="number"
+              min="1"
+              [(ngModel)]="product.quantity"
+              (input)="updateQuantity()"
+            />
+          </td>
+          <td>₹{{ product.price | number : "1.2-2" }}</td>
+          <td>
+            <mat-icon
+              class="edit"
+              *ngIf="editingIndex !== i"
+              (click)="editProduct(i)"
+              matTooltip="Edit"
+              matTooltipPosition="above"
+            >
+              edit
+            </mat-icon>
+            <mat-icon
+              class="save-btn"
+              *ngIf="editingIndex === i"
+              (click)="saveEdit()"
+              matTooltip="Save"
+              matTooltipPosition="above"
+            >
+              save
+            </mat-icon>
+            <mat-icon
+              class="delete"
+              (click)="removeProduct(i)"
+              matTooltip="Delete"
+              matTooltipPosition="above"
+            >
+              delete
+            </mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,211 @@
+/* Router Outlet Container */
+.app-container {
+  padding: 24px;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  background-color: #f8f9fa;
+}
+
+/* Container Styles */
+.example-container {
+  height: 100vh;
+}
+
+.example-sidenav {
+  width: 260px;
+  border: none;
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 0; /* Keep only top-left rounded */
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+mat-drawer {
+  height: 100%;
+}
+
+mat-icon {
+  font-size: 25px;
+}
+
+mat-drawer-content {
+  height: 100vh;
+}
+
+mat-toolbar {
+  justify-content: space-between;
+  background-color: #1e1e2f;
+  color: white;
+}
+
+mat-icon {
+  color: white;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.title {
+  margin-left: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Roboto", sans-serif;
+}
+
+.title h2 {
+  font-size: 1em;
+  /* margin-bottom: 15px; */
+  color: white;
+}
+
+/* Styling for the description paragraph */
+.title p {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.9em;
+}
+
+.button {
+  padding-left: 15px;
+}
+
+/* Mat-Toolbar Stylesheet Matching Sidebar Styling */
+
+/* Toolbar Container */
+mat-toolbar {
+  background-color: #1e1e2f; /* Same dark background as sidebar */
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Icon Button Styling */
+mat-toolbar button {
+  color: #fff;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+mat-toolbar button:hover {
+  color: #6e8efb; /* Accent color from sidebar gradient */
+  transform: scale(1.1);
+}
+
+/* Spacer for Centering Title */
+.example-spacer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Title Styling */
+.title {
+  text-align: center;
+  padding: 0 16px;
+}
+
+.title-heading {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* Navigation and Search Form Styling */
+mat-toolbar nav {
+  margin-left: 16px;
+}
+
+mat-toolbar nav .container-fluid {
+  display: flex;
+  align-items: center;
+}
+
+mat-toolbar nav form {
+  display: flex;
+  align-items: center;
+}
+
+/* Search Input Styling */
+mat-toolbar nav input.form-control {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #2c2c3e; /* Slightly lighter dark tone */
+  color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+
+mat-toolbar nav input.form-control::placeholder {
+  color: #aaa;
+}
+
+mat-toolbar nav input.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #6e8efb; /* Use accent color for focus */
+}
+
+/* Search Button Styling */
+mat-toolbar nav button.btn {
+  margin-left: 8px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #6e8efb; /* Accent color matching sidebar gradient */
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+mat-toolbar nav button.btn:hover {
+  background-color: #a777e3; /* Complementary accent on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .example-sidenav {
+    width: 240px;
+  }
+
+  .title-heading {
+    font-size: 24px;
+  }
+
+  mat-toolbar {
+    padding: 0 16px;
+  }
+
+  .app-container {
+    padding: 16px;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animations */
+.mat-toolbar {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* .alert-icon {
+  margin-right: 2rem;
+} */

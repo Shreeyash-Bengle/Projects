@@ -1,0 +1,498 @@
+<form [formGroup]="eInvoiceForm" (ngSubmit)="onSubmit()">
+  <h2 class="heads">Seller GSTIN Details</h2>
+
+  <div class="form-group">
+    <label for="sellergstin">Seller's GSTIN:</label>
+    <input
+      id="sellergstin"
+      type="text"
+      formControlName="sellergstin"
+      required
+    />
+    <div
+      *ngIf="f['sellergstin'].invalid && f['sellergstin'].touched"
+      class="error-message"
+    >
+      Seller's GSTIN is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="sellerlegalname">Seller Legal Name:</label>
+    <input
+      id="sellerlegalname"
+      type="text"
+      formControlName="sellerlegalname"
+      required
+    />
+    <div
+      *ngIf="f['sellerlegalname'].invalid && f['sellerlegalname'].touched"
+      class="error-message"
+    >
+      Seller Legal Name is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="sellertradename">Seller Trade Name:</label>
+    <input id="sellertradename" type="text" formControlName="sellertradename" />
+  </div>
+
+  <div class="form-group">
+    <label for="selleraddr1">Seller Address 1:</label>
+    <input
+      id="selleraddr1"
+      type="text"
+      formControlName="selleraddr1"
+      required
+    />
+    <div
+      *ngIf="f['selleraddr1'].invalid && f['selleraddr1'].touched"
+      class="error-message"
+    >
+      Seller Address 1 is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="selleraddr2">Seller Address 2:</label>
+    <input id="selleraddr2" type="text" formControlName="selleraddr2" />
+  </div>
+
+  <div class="form-group">
+    <label for="sellerlocation">Seller Location:</label>
+    <input
+      id="sellerlocation"
+      type="text"
+      formControlName="sellerlocation"
+      required
+    />
+    <div
+      *ngIf="f['sellerlocation'].invalid && f['sellerlocation'].touched"
+      class="error-message"
+    >
+      Seller Location is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="sellerstate">Seller State:</label>
+    <input
+      id="sellerstate"
+      type="text"
+      formControlName="sellerstate"
+      required
+    />
+    <div
+      *ngIf="f['sellerstate'].invalid && f['sellerstate'].touched"
+      class="error-message"
+    >
+      Seller State is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="sellerpincode">Seller Pin Code:</label>
+    <input
+      id="sellerpincode"
+      type="text"
+      formControlName="sellerpincode"
+      required
+    />
+    <div
+      *ngIf="f['sellerpincode'].invalid && f['sellerpincode'].touched"
+      class="error-message"
+    >
+      Seller Pin Code is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="sellerphonenumber">Seller Phone Number:</label>
+    <input
+      id="sellerphonenumber"
+      type="text"
+      formControlName="sellerphonenumber"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="selleremailid">Seller Email ID:</label>
+    <input id="selleremailid" type="email" formControlName="selleremailid" />
+  </div>
+
+  <h2>E-Invoice Details</h2>
+
+  <div class="form-group">
+    <label for="supplytypecode">Supply Type Code:</label>
+    <input
+      id="supplytypecode"
+      type="text"
+      formControlName="supplytypecode"
+      required
+    />
+    <div
+      *ngIf="f['supplytypecode'].invalid && f['supplytypecode'].touched"
+      class="error-message"
+    >
+      Supply Type Code is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="documenttype">Document Type:</label>
+    <input
+      id="documenttype"
+      type="text"
+      formControlName="documenttype"
+      required
+    />
+    <div
+      *ngIf="f['documenttype'].invalid && f['documenttype'].touched"
+      class="error-message"
+    >
+      Document Type is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="documentnumber">Document Number:</label>
+    <input
+      id="documentnumber"
+      type="text"
+      formControlName="documentnumber"
+      required
+    />
+    <div
+      *ngIf="f['documentnumber'].invalid && f['documentnumber'].touched"
+      class="error-message"
+    >
+      Document Number is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="documentdate">Document Date:</label>
+    <input
+      id="documentdate"
+      type="date"
+      formControlName="documentdate"
+      required
+    />
+    <div
+      *ngIf="f['documentdate'].invalid && f['documentdate'].touched"
+      class="error-message"
+    >
+      Document Date is required.
+    </div>
+  </div>
+
+  <h3>Buyer Details</h3>
+  <div class="form-group">
+    <label for="buyersgstin">Buyer's GSTIN:</label>
+    <input
+      id="buyersgstin"
+      type="text"
+      formControlName="buyersgstin"
+      required
+    />
+    <div
+      *ngIf="f['buyersgstin'].invalid && f['buyersgstin'].touched"
+      class="error-message"
+    >
+      Valid Buyer's GSTIN is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="buyerlegalname">Buyer Legal Name:</label>
+    <input
+      id="buyerlegalname"
+      type="text"
+      formControlName="buyerlegalname"
+      required
+    />
+    <div
+      *ngIf="f['buyerlegalname'].invalid && f['buyerlegalname'].touched"
+      class="error-message"
+    >
+      Buyer Legal Name is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="buyerpos">Buyer POS:</label>
+    <input id="buyerpos" type="text" formControlName="buyerpos" required />
+    <div
+      *ngIf="f['buyerpos'].invalid && f['buyerpos'].touched"
+      class="error-message"
+    >
+      Buyer POS is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="buyeraddr1">Buyer Address 1:</label>
+    <input id="buyeraddr1" type="text" formControlName="buyeraddr1" required />
+    <div
+      *ngIf="f['buyeraddr1'].invalid && f['buyeraddr1'].touched"
+      class="error-message"
+    >
+      Buyer Address 1 is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="buyerlocation">Buyer Location:</label>
+    <input
+      id="buyerlocation"
+      type="text"
+      formControlName="buyerlocation"
+      required
+    />
+    <div
+      *ngIf="f['buyerlocation'].invalid && f['buyerlocation'].touched"
+      class="error-message"
+    >
+      Buyer Location is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="buyerpincode">Buyer Pin Code:</label>
+    <input
+      id="buyerpincode"
+      type="text"
+      formControlName="buyerpincode"
+      required
+    />
+    <div
+      *ngIf="f['buyerpincode'].invalid && f['buyerpincode'].touched"
+      class="error-message"
+    >
+      Valid 6-digit Pin Code is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="buyerstate">Buyer State:</label>
+    <input id="buyerstate" type="text" formControlName="buyerstate" required />
+    <div
+      *ngIf="f['buyerstate'].invalid && f['buyerstate'].touched"
+      class="error-message"
+    >
+      Buyer State is required.
+    </div>
+  </div>
+
+  <h3>Product Details</h3>
+
+  <div class="form-group">
+    <label for="sino">SI Number:</label>
+    <input id="sino" type="number" formControlName="sino" required />
+    <div *ngIf="f['sino'].invalid && f['sino'].touched" class="error-message">
+      SI Number is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="hsncode">HSN Code:</label>
+    <input id="hsncode" type="text" formControlName="hsncode" required />
+    <div
+      *ngIf="f['hsncode'].invalid && f['hsncode'].touched"
+      class="error-message"
+    >
+      HSN Code is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="slno">SL No:</label>
+    <input id="slno" type="number" formControlName="slno" required />
+    <div *ngIf="f['slno'].invalid && f['slno'].touched" class="error-message">
+      SL No is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="quantity">Quantity:</label>
+    <input id="quantity" type="number" formControlName="quantity" required />
+    <div
+      *ngIf="f['quantity'].invalid && f['quantity'].touched"
+      class="error-message"
+    >
+      Quantity must be at least 1.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="unit">Unit:</label>
+    <input id="unit" type="text" formControlName="unit" required />
+    <div *ngIf="f['unit'].invalid && f['unit'].touched" class="error-message">
+      Unit is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="unitprice">Unit Price:</label>
+    <input id="unitprice" type="number" formControlName="unitprice" required />
+    <div
+      *ngIf="f['unitprice'].invalid && f['unitprice'].touched"
+      class="error-message"
+    >
+      Unit Price must be non-negative.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="grossamount">Gross Amount:</label>
+    <input
+      id="grossamount"
+      type="number"
+      formControlName="grossamount"
+      required
+    />
+    <div
+      *ngIf="f['grossamount'].invalid && f['grossamount'].touched"
+      class="error-message"
+    >
+      Gross Amount is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="taxablevalue">Taxable Value:</label>
+    <input
+      id="taxablevalue"
+      type="number"
+      formControlName="taxablevalue"
+      required
+    />
+    <div
+      *ngIf="f['taxablevalue'].invalid && f['taxablevalue'].touched"
+      class="error-message"
+    >
+      Taxable Value is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="gstrate">GST Rate:</label>
+    <input id="gstrate" type="number" formControlName="gstrate" required />
+    <div
+      *ngIf="f['gstrate'].invalid && f['gstrate'].touched"
+      class="error-message"
+    >
+      GST Rate is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="itemtotal">Item Total:</label>
+    <input id="itemtotal" type="number" formControlName="itemtotal" required />
+    <div
+      *ngIf="f['itemtotal'].invalid && f['itemtotal'].touched"
+      class="error-message"
+    >
+      Item Total is required.
+    </div>
+  </div>
+
+  <h3>Value Details</h3>
+
+  <div class="form-group">
+    <label for="totaltaxablevalue">Total Taxable Value:</label>
+    <input
+      id="totaltaxablevalue"
+      type="number"
+      formControlName="totaltaxablevalue"
+      required
+    />
+    <div
+      *ngIf="f['totaltaxablevalue'].invalid && f['totaltaxablevalue'].touched"
+      class="error-message"
+    >
+      Total Taxable Value is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="totalinvoicevalue">Total Invoice Value:</label>
+    <input
+      id="totalinvoicevalue"
+      type="number"
+      formControlName="totalinvoicevalue"
+      required
+    />
+    <div
+      *ngIf="f['totalinvoicevalue'].invalid && f['totalinvoicevalue'].touched"
+      class="error-message"
+    >
+      Total Invoice Value is required.
+    </div>
+  </div>
+
+  <!-- <button type="submit" [disabled]="isSubmitting" class="submit-button">
+    {{ isSubmitting ? "Creating..." : "Submit " }}
+  </button> -->
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    class="add-item"
+    matTooltip="{{
+      eInvoiceForm.invalid
+        ? 'Please fill all required fields correctly'
+        : 'Submit'
+    }}"
+    matTooltipPosition="above"
+  >
+    {{ isSubmitting ? "Creating..." : "Submit " }}
+  </button>
+  <!-- <button type="button" (click)="downloadInvoiceJson()">Download JSON</button> -->
+</form>
+<div class="table-container">
+  <h2 class="heading">E-Invoice List</h2>
+  <table *ngIf="invoices && invoices.length > 0">
+    <thead>
+      <tr>
+        <th>Buyer Name</th>
+        <th>Buyer GSTIN</th>
+        <th>Buyer Location</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of invoices">
+        <td>{{ invoice.buyerlegalname }}</td>
+        <td>{{ invoice.buyersgstin }}</td>
+        <td>{{ invoice.buyerlocation }}</td>
+        <td>
+          <!-- Add buttons if needed -->
+          <button
+            type="button"
+            class="download"
+            (click)="downloadExistingInvoice(invoice)"
+            matTooltip="Download"
+            matTooltipPosition="above"
+          >
+            <mat-icon>download</mat-icon>
+          </button>
+          <button
+            type="button"
+            class="delete"
+            (click)="deleteInvoice(invoice)"
+            [disabled]="isSubmitting"
+            matTooltip="{{ isSubmitting ? 'Deleting...' : 'Delete' }}"
+            matTooltipPosition="above"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="invoices.length === 0">No invoices to display.</p>
+</div>

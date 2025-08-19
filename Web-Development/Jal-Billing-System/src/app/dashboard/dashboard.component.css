@@ -1,0 +1,364 @@
+/* General Scroll Support */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Optional scroll wrapper */
+.scroll-wrapper {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Updated main-dashboard */
+.main-dashboard {
+  padding: 30px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Card Container */
+.mini-small-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+/* Small Card Styling */
+.small-card {
+  background: linear-gradient(145deg, #ffffff, #e0e0e0);
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px #d1d1d1, -5px -5px 15px #ffffff;
+  padding: 25px;
+  width: 260px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.small-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 7px 7px 20px #cacaca, -7px -7px 20px #f6f6f6;
+}
+
+.small-card p {
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.inner-small-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inner-small-card h3 {
+  margin: 0;
+  font-size: 2rem;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.inner-small-card mat-icon {
+  color: #3498db;
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Accent Border Colors */
+.card-parent-product {
+  border-left: 5px solid #3498db;
+}
+.card-child-product {
+  border-left: 5px solid #e67e22;
+}
+.card-defective-stock {
+  border-left: 5px solid #c0392b;
+}
+.card-vendor-count {
+  border-left: 5px solid #27ae60;
+}
+.card-suppu-count {
+  border-left: 5px solid #8e44ad;
+}
+.card-total-invoice {
+  border-left: 5px solid #f39c12;
+}
+
+/* Info Card Styling */
+.info-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px #d1d1d1, -3px -3px 10px #ffffff;
+  margin-bottom: 30px;
+}
+
+.card-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* Table Styling */
+.table-responsive {
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.table th {
+  background-color: #ecf0f1;
+  color: #7f8c8d;
+  font-weight: 600;
+  padding: 14px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.table td {
+  background-color: #fff;
+  padding: 14px;
+  vertical-align: middle;
+  color: #34495e;
+  box-shadow: 2px 2px 5px #d1d1d1, -2px -2px 5px #ffffff;
+  border-radius: 8px;
+}
+
+.table tbody tr {
+  transition: transform 0.15s ease-in-out;
+}
+
+.table tbody tr:hover {
+  transform: scale(1.02);
+}
+
+/* Quick Actions */
+.quick-actions-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px #d1d1d1, -3px -3px 10px #ffffff;
+}
+
+.quick-actions-card mat-card-header {
+  padding: 20px;
+}
+
+.quick-actions-card .mat-card-title {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.action-button {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+.action-button:hover {
+  transform: scale(1.05);
+  box-shadow: 3px 3px 8px #d1d1d1, -3px -3px 8px #ffffff;
+}
+
+.action-button mat-icon {
+  font-size: 1.3rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Action Button Colors */
+.action-button-schemes {
+  background-color: #3498db;
+  color: white;
+}
+.action-button-records {
+  background-color: #e67e22;
+  color: white;
+}
+.action-button-funding {
+  background-color: #27ae60;
+  color: white;
+}
+.action-button-admission {
+  background-color: #8e44ad;
+  color: white;
+}
+.action-button-contacts {
+  background-color: #f39c12;
+  color: white;
+}
+.action-button-settings {
+  background-color: #34495e;
+  color: white;
+}
+
+/* WhatsApp Floating Button */
+.app-footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  font-size: 2rem;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: transform 0.2s ease-in-out;
+  pointer-events: auto;
+}
+
+.app-footer:hover {
+  transform: scale(1.1);
+}
+
+.app-footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  text-decoration: none;
+}
+
+.my-float {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* Footer End Section */
+.app-end {
+  color: #555;
+  text-align: center;
+  padding: 15px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+  font-size: 0.9rem;
+}
+
+/* Responsive Layouts */
+@media (max-width: 1200px) {
+  .mini-small-card-container {
+    justify-content: center;
+  }
+
+  .small-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 992px) {
+  .col-lg-8,
+  .col-lg-4 {
+    width: 100%;
+  }
+
+  .col-lg-4 {
+    margin-top: 30px;
+  }
+
+  .action-buttons {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .mini-small-card-container {
+    justify-content: center;
+  }
+
+  .small-card {
+    width: 100%;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .card-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .main-dashboard {
+    padding: 20px;
+  }
+
+  .mini-small-card-container {
+    gap: 15px;
+  }
+
+  .small-card {
+    padding: 15px;
+  }
+
+  .inner-small-card h3 {
+    font-size: 1.6rem;
+  }
+
+  .inner-small-card mat-icon {
+    font-size: 1.6rem;
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
+
+/* Icon inside buttons */
+.icon {
+  color: #fff;
+}
+
+/* Optional copyright margin */
+.copyright {
+  margin-top: 3rem;
+}

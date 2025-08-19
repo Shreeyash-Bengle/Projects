@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="header-section">
+    <div class="header-content">
+      <h1 class="main-title">
+        <mat-icon class="header-icon">warning</mat-icon>
+        Stock Alert
+      </h1>
+      <p class="header-subtitle">Monitor low stock items in your inventory</p>
+    </div>
+    <div class="header-stats">
+      <div class="stat-item">
+        <span class="stat-value">{{ lowStockCount }}</span>
+        <span class="stat-label">Low Stock Items</span>
+      </div>
+      <!-- <div class="stat-item">
+        <span class="stat-value">{{ totalStockValue | currency : "INR" }}</span>
+        <span class="stat-label">Total Value</span>
+      </div> -->
+    </div>
+  </div>
+  <div class="mat-elevation-z8">
+    <!-- Search Filter -->
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Search items"
+        #input
+      />
+    </mat-form-field>
+
+    <!-- Loading Spinner -->
+    <div class="loading-shade" *ngIf="isLoading">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+      </ng-container>
+
+      <!-- HSN Code Column -->
+      <ng-container matColumnDef="hsn_code">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>HSN Code</th>
+        <td mat-cell *matCellDef="let row">{{ row.hsn_code }}</td>
+      </ng-container>
+
+      <!-- Stock Type Column -->
+      <ng-container matColumnDef="stock_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+        <td mat-cell *matCellDef="let row">{{ row.stock_type }}</td>
+      </ng-container>
+
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
+        <td
+          mat-cell
+          *matCellDef="let row"
+          [ngClass]="{ 'low-stock': row.quantity < 80 }"
+        >
+          {{ row.quantity }}
+        </td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+        <td mat-cell *matCellDef="let row">
+          ₹{{ row.price | number : "1.2-2" }}
+        </td>
+      </ng-container>
+
+      <!-- Supplier Column -->
+      <ng-container matColumnDef="supplier">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Supplier</th>
+        <td mat-cell *matCellDef="let row">{{ row.supplier }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- No Data Row -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="7">No low stock items found</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

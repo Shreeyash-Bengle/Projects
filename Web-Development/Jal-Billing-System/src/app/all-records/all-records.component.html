@@ -1,0 +1,193 @@
+<div class="invoice-list">
+  <h2>All Tax Invoices</h2>
+
+  <button mat-raised-button color="accent" routerLink="/billing">
+    <mat-icon>receipt_long</mat-icon>
+    Create Bill
+  </button>
+  <!-- Add search field -->
+  <div class="search-container">
+    <!-- create-bill.component.html -->
+
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search Invoices</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchTerm"
+        (input)="filterInvoices()"
+        placeholder="Search by Invoice No or Vendor Name"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <!-- Modify the table to use filtered invoices -->
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z2" matSort>
+    <!-- Invoice No Column -->
+    <ng-container matColumnDef="invoice_number">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Invoice No</mat-header-cell
+      >
+      <mat-cell *matCellDef="let invoice">{{
+        invoice.invoice_number
+      }}</mat-cell>
+    </ng-container>
+
+    <!-- Invoice Date Column -->
+    <ng-container matColumnDef="invoice_date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Invoice Date</mat-header-cell
+      >
+      <mat-cell *matCellDef="let invoice">{{ invoice.invoice_date }}</mat-cell>
+    </ng-container>
+
+    <!-- Vendor Name Column -->
+    <ng-container matColumnDef="vendor_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Vendor Name</mat-header-cell
+      >
+      <mat-cell *matCellDef="let invoice">{{
+        invoice.vendor?.vendor_name
+      }}</mat-cell>
+    </ng-container>
+
+    <!-- Consignee Name Column -->
+    <ng-container matColumnDef="consignee_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Consignee Name</mat-header-cell
+      >
+      <mat-cell *matCellDef="let invoice">{{
+        invoice.consignee?.name
+      }}</mat-cell>
+    </ng-container>
+
+    <!-- Due Date Column -->
+    <ng-container matColumnDef="due_on">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Due Date</mat-header-cell
+      >
+      <mat-cell *matCellDef="let invoice">{{ invoice.due_on }}</mat-cell>
+    </ng-container>
+
+    <!-- Transport Mode Column -->
+    <ng-container matColumnDef="transport_mode">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Transport Mode</mat-header-cell
+      >
+      <mat-cell *matCellDef="let invoice">{{
+        invoice.transport_mode
+      }}</mat-cell>
+    </ng-container>
+
+    <!-- GST No Column -->
+    <!-- <ng-container matColumnDef="gst_no">
+      <mat-header-cell *matHeaderCellDef>GST No</mat-header-cell>
+      <mat-cell *matCellDef="let invoice">{{ invoice.gst_no }}</mat-cell>
+    </ng-container> -->
+
+    <!-- Payment Terms Column -->
+    <!-- <ng-container matColumnDef="payment_terms">
+      <mat-header-cell *matHeaderCellDef>Payment Terms</mat-header-cell>
+      <mat-cell *matCellDef="let invoice">{{ invoice.payment_terms }}</mat-cell>
+    </ng-container> -->
+
+    <!-- Action Column -->
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-cell *matCellDef="let invoice">
+        <!-- More Options Menu Button -->
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="printMenu"
+          matTooltip="Print Options"
+          matTooltipPosition="above"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <!-- Menu for Print Types -->
+        <mat-menu #printMenu="matMenu">
+          <button
+            mat-menu-item
+            (click)="
+              printInvoice(invoice.invoice_number, 'ORIGINAL FOR RECIPIENT')
+            "
+          >
+            <mat-icon>print</mat-icon>
+            <span>Original for Recipient</span>
+          </button>
+          <button
+            mat-menu-item
+            (click)="
+              printInvoice(invoice.invoice_number, 'DUPLICATE FOR TRANSPORT')
+            "
+          >
+            <mat-icon>print</mat-icon>
+            <span>Duplicate for Transport</span>
+          </button>
+          <button
+            mat-menu-item
+            (click)="
+              printInvoice(invoice.invoice_number, 'TRIPLICATE FOR TRANSPORTER')
+            "
+          >
+            <mat-icon>print</mat-icon>
+            <span>Triplicate for Transporter</span>
+          </button>
+          <button
+            mat-menu-item
+            (click)="printInvoice(invoice.invoice_number, 'EXTRA COPY')"
+          >
+            <mat-icon>print</mat-icon>
+            <span>Extra Copy</span>
+          </button>
+        </mat-menu>
+
+        <!-- Edit Button -->
+        <button
+          class="btn1"
+          (click)="editInvoice(invoice.invoice_number)"
+          matTooltip="Edit"
+          matTooltipPosition="above"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <!-- Delete Button with Spinner -->
+        <button
+          class="btn2"
+          (click)="deleteInvoice(invoice.invoice_number)"
+          [disabled]="deletingInvoiceId === invoice.invoice_number"
+          matTooltip="Delete"
+          matTooltipPosition="above"
+        >
+          <ng-container
+            *ngIf="
+              deletingInvoiceId === invoice.invoice_number;
+              else deleteIcon
+            "
+          >
+            <mat-progress-spinner
+              diameter="20"
+              mode="indeterminate"
+              color="warn"
+            ></mat-progress-spinner>
+          </ng-container>
+          <ng-template #deleteIcon>
+            <mat-icon>delete</mat-icon>
+          </ng-template>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

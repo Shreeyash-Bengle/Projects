@@ -1,0 +1,116 @@
+.invoice-list {
+  padding: 2rem;
+  background-color: #f9fafb;
+  font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+}
+
+.invoice-list h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #37474f;
+  margin-bottom: 1.5rem;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.search-field {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field-outline {
+  border-radius: 8px;
+}
+
+.mat-table {
+  width: 100%;
+  overflow: auto;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.mat-header-cell,
+.mat-cell {
+  padding: 1rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.mat-header-cell {
+  background-color: #e0f2f1;
+  font-weight: bold;
+  color: #00695c;
+  border-bottom: 1px solid #ccc;
+}
+
+.mat-row:nth-child(even) .mat-cell {
+  background-color: #f1f8f9;
+}
+
+.mat-cell {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+button.btn1,
+button.btn2 {
+  border: none;
+  background: transparent;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+button.btn1:hover,
+button.btn2:hover {
+  transform: scale(1.2);
+}
+
+button.btn2 mat-icon {
+  color: #f44336;
+}
+
+button.btn1 mat-icon {
+  color: #1976d2;
+}
+
+mat-progress-spinner {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .mat-header-cell,
+  .mat-cell {
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .search-container {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .invoice-list {
+    padding: 1rem;
+  }
+
+  button.btn1,
+  button.btn2 {
+    margin-right: 0.3rem;
+  }
+
+  .mat-table {
+    display: block;
+    overflow: auto;
+  }
+}

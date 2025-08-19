@@ -1,0 +1,490 @@
+<div class="container">
+  <h2>
+    Staff
+    {{
+      showForm
+        ? editingStaffIndex !== null
+          ? "Edit Staff"
+          : viewFormDetails
+          ? "Staff Details"
+          : "Registration
+    Form"
+        : "List"
+    }}
+  </h2>
+
+  <div
+    style="
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    "
+  >
+    <div style="display: flex; align-items: center">
+      <mat-icon
+        style="cursor: pointer; margin-right: 5px"
+        (click)="toggleSearchInput()"
+        matTooltip="Search"
+        matTooltipPosition="above"
+        >search</mat-icon
+      >
+      <input
+        type="text"
+        *ngIf="showSearchInput"
+        placeholder="Search by Name or Phone"
+        [(ngModel)]="searchTerm"
+        (input)="searchStaff()"
+        style="
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+          width: 300px;
+          transition: border-color 0.3s;
+        "
+      />
+    </div>
+    <button (click)="toggleForm()">
+      {{ showForm ? "Hide Form" : "Create New Staff" }}
+    </button>
+  </div>
+
+  <div *ngIf="!showForm">
+    <table
+      *ngIf="filteredStaffList.length > 0"
+      style="width: 100%; border-collapse: collapse; margin-bottom: 20px"
+    >
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left">
+            Full Name
+          </th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left">
+            Employee No
+          </th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left">
+            Designation
+          </th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left">
+            Email
+          </th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left">
+            Phone
+          </th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left">
+            Actions
+          </th>
+          <th style="border: 1px solid #ddd; padding: 8px; text-align: left">
+            View Form
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let staff of filteredStaffList; let i = index">
+          <td style="border: 1px solid #ddd; padding: 8px">
+            {{ staff["full_name"] }}
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px">
+            {{ staff["punching_number"] }}
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px">
+            {{ staff["designation"] }}
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px">
+            {{ staff["email"] }}
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px">
+            {{ staff["phone_number"] }}
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px; text-align: center">
+            <mat-icon
+              class="edit"
+              (click)="editStaff(i)"
+              matTooltip="Edit"
+              matTooltipPosition="above"
+              >edit</mat-icon
+            >
+            <mat-icon
+              class="delete"
+              (click)="deleteStaff(i)"
+              matTooltip="Delete"
+              matTooltipPosition="above"
+              >delete</mat-icon
+            >
+          </td>
+          <td style="border: 1px solid #ddd; padding: 8px; text-align: center">
+            <mat-icon
+              class="profile"
+              (click)="viewStaffDetails(staff)"
+              matTooltip="View"
+              matTooltipPosition="above"
+              >visibility</mat-icon
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="filteredStaffList.length === 0">No staff records found.</p>
+  </div>
+
+  <div *ngIf="showForm" [formGroup]="registrationForm">
+    <h3>
+      {{
+        editingStaffIndex !== null
+          ? "Edit Staff"
+          : viewFormDetails
+          ? "Staff Details"
+          : "Jal Employee Registration Form"
+      }}
+    </h3>
+
+    <div *ngIf="!viewFormDetails">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input
+            type="text"
+            id="fullName"
+            formControlName="full_name"
+            placeholder="Enter full name"
+          />
+          <div
+            *ngIf="
+              registrationForm.get('full_name')?.invalid &&
+              (registrationForm.get('full_name')?.dirty ||
+                registrationForm.get('full_name')?.touched)
+            "
+          >
+            <small class="error">Full Name is required.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dateOfBirth">Date of Birth</label>
+          <input type="date" id="dateOfBirth" formControlName="date_of_birth" />
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender" formControlName="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input
+            type="text"
+            id="phoneNumber"
+            formControlName="phone_number"
+            placeholder="Enter phone number"
+          />
+          <div
+            *ngIf="
+              registrationForm.get('phone_number')?.invalid &&
+              (registrationForm.get('phone_number')?.dirty ||
+                registrationForm.get('phone_number')?.touched)
+            "
+          >
+            <small class="error">Invalid phone number.</small>
+          </div>
+        </div>
+        <div class="form-group full-width">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="Enter email"
+          />
+          <div
+            *ngIf="
+              registrationForm.get('email')?.invalid &&
+              (registrationForm.get('email')?.dirty ||
+                registrationForm.get('email')?.touched)
+            "
+          >
+            <small class="error">Invalid email format.</small>
+          </div>
+        </div>
+      </div>
+
+      <h3>Job Details</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="designation">Designation</label>
+          <input
+            type="text"
+            id="designation"
+            formControlName="designation"
+            placeholder="Enter designation"
+          />
+        </div>
+        <div class="form-group">
+          <label for="punching_number">Employee No</label>
+          <input
+            type="text"
+            id="punching_number"
+            formControlName="punching_number"
+            placeholder="Enter employee number"
+          />
+        </div>
+        <div class="form-group">
+          <label for="department">Department</label>
+          <input
+            type="text"
+            id="department"
+            formControlName="department"
+            placeholder="Enter department"
+          />
+        </div>
+        <div class="form-group">
+          <label for="dateOfJoining">Date of Joining</label>
+          <input
+            type="date"
+            id="dateOfJoining"
+            formControlName="date_of_joining"
+          />
+        </div>
+        <div class="form-group">
+          <label for="salary">Salary</label>
+          <input
+            type="number"
+            id="salary"
+            formControlName="salary"
+            placeholder="Enter salary"
+          />
+          <div
+            *ngIf="
+              registrationForm.get('salary')?.invalid &&
+              (registrationForm.get('salary')?.dirty ||
+                registrationForm.get('salary')?.touched)
+            "
+          >
+            <small class="error">Salary must be a positive number.</small>
+          </div>
+        </div>
+      </div>
+
+      <h3>Address Details</h3>
+      <div class="form-group full-width">
+        <label for="address">Address</label>
+        <textarea
+          id="address"
+          formControlName="address"
+          placeholder="Enter full address"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <h3>Documents</h3>
+      <div class="form-grid">
+        <!-- Staff Photo Input -->
+        <div class="form-group">
+          <label>Staff Photo</label>
+          <input
+            type="file"
+            (change)="onFileSelected($event, 'staff')"
+            accept="image/*"
+            #staffPhotoInput
+          />
+          <img [src]="photoURL" *ngIf="photoURL" class="preview-image" />
+        </div>
+
+        <!-- Aadhar Card Input -->
+        <div class="form-group">
+          <label>Aadhar Card</label>
+          <input
+            type="file"
+            (change)="onFileSelected($event, 'aadhar')"
+            accept="image/*"
+            #aadharInput
+          />
+          <img
+            [src]="aadharCardURL"
+            *ngIf="aadharCardURL"
+            class="preview-image"
+          />
+        </div>
+
+        <!-- PAN Card Input -->
+        <div class="form-group">
+          <label>PAN Card</label>
+          <input
+            type="file"
+            (change)="onFileSelected($event, 'pan')"
+            accept="image/*"
+            #panInput
+          />
+          <img [src]="panCardURL" *ngIf="panCardURL" class="preview-image" />
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button type="button" (click)="addStaff()">
+          {{ editingStaffIndex !== null ? "Update Staff" : "Submit" }}
+        </button>
+        <button type="button" (click)="toggleForm()">Cancel</button>
+      </div>
+
+      <div *ngIf="viewFormDetails && staffDetails">
+        <p><strong>Full Name:</strong> {{ staffDetails["full_name"] }}</p>
+        <p>
+          <strong>Date of Birth:</strong>
+          {{ staffDetails["date_of_birth"] | date }}
+        </p>
+        <p><strong>Gender:</strong> {{ staffDetails["gender"] }}</p>
+        <p><strong>Phone Number:</strong> {{ staffDetails["phone_number"] }}</p>
+        <p><strong>Email:</strong> {{ staffDetails["email"] }}</p>
+        <p><strong>Designation:</strong> {{ staffDetails["designation"] }}</p>
+        <p><strong>Department:</strong> {{ staffDetails["department"] }}</p>
+        <p>
+          <strong>Date of Joining:</strong>
+          {{ staffDetails["date_of_joining"] | date }}
+        </p>
+        <p><strong>Salary:</strong> {{ staffDetails["salary"] }}</p>
+        <p><strong>Address:</strong> {{ staffDetails["address"] }}</p>
+
+        <h3>Documents</h3>
+        <div class="document-preview" *ngIf="staffDetails['aadhar_card']">
+          <strong>Aadhar Card:</strong>
+          <img
+            [src]="staffDetails['aadhar_card']"
+            alt="Aadhar Card"
+            style="max-width: 300px; margin-top: 10px"
+          />
+        </div>
+        <div class="document-preview" *ngIf="staffDetails['pan_card']">
+          <strong>PAN Card:</strong>
+          <img
+            [src]="staffDetails['pan_card']"
+            alt="PAN Card"
+            style="max-width: 300px; margin-top: 10px"
+          />
+        </div>
+        <div class="document-preview" *ngIf="staffDetails['photo']">
+          <strong>Photo:</strong>
+          <img
+            [src]="staffDetails['photo']"
+            alt="Staff Photo"
+            style="max-width: 200px; margin-top: 10px"
+          />
+        </div>
+        <button type="button" (click)="toggleForm()">Back to List</button>
+      </div>
+    </div>
+    <div *ngIf="viewFormDetails && staffDetails">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" [value]="staffDetails['full_name']" readonly />
+        </div>
+        <div class="form-group">
+          <label>Date of Birth</label>
+          <input
+            type="date"
+            [value]="staffDetails['date_of_birth'] | date : 'yyyy-MM-dd'"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <input type="text" [value]="staffDetails['gender']" readonly />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="text" [value]="staffDetails['phone_number']" readonly />
+        </div>
+        <div class="form-group full-width">
+          <label>Email</label>
+          <input type="email" [value]="staffDetails['email']" readonly />
+        </div>
+      </div>
+
+      <h3>Job Details</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Designation</label>
+          <input type="text" [value]="staffDetails['designation']" readonly />
+        </div>
+
+        <div class="form-group">
+          <label>Employee No</label>
+          <input
+            type="text"
+            [value]="staffDetails['punching_number']"
+            readonly
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Department</label>
+          <input type="text" [value]="staffDetails['department']" readonly />
+        </div>
+        <div class="form-group">
+          <label>Date of Joining</label>
+          <input
+            type="date"
+            [value]="staffDetails['date_of_joining'] | date : 'yyyy-MM-dd'"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label>Salary</label>
+          <input type="number" [value]="staffDetails['salary']" readonly />
+        </div>
+      </div>
+
+      <h3>Address Details</h3>
+      <div class="form-group full-width">
+        <label>Address</label>
+        <textarea
+          [value]="staffDetails['address']"
+          rows="3"
+          readonly
+        ></textarea>
+      </div>
+
+      <h3>Documents</h3>
+      <div class="form-grid">
+        <div class="form-group full-width">
+          <label>Aadhar Card</label>
+          <div class="document-preview" *ngIf="staffDetails['aadhar_card']">
+            <img
+              [src]="staffDetails['aadhar_card']"
+              alt="Aadhar Card"
+              style="max-width: 300px; margin-top: 10px"
+            />
+          </div>
+          <p *ngIf="!staffDetails['aadhar_card']">No Aadhar Card uploaded.</p>
+        </div>
+
+        <div class="form-group full-width">
+          <label>PAN Card</label>
+          <div class="document-preview" *ngIf="staffDetails['pan_card']">
+            <img
+              [src]="staffDetails['pan_card']"
+              alt="PAN Card"
+              style="max-width: 300px; margin-top: 10px"
+            />
+          </div>
+          <p *ngIf="!staffDetails['pan_card']">No PAN Card uploaded.</p>
+        </div>
+
+        <div class="form-group full-width">
+          <label>Photo</label>
+          <div class="photo-preview" *ngIf="staffDetails['photo']">
+            <img
+              [src]="staffDetails['photo']"
+              alt="Staff Photo"
+              style="max-width: 200px; margin-top: 10px"
+            />
+          </div>
+          <p *ngIf="!staffDetails['photo']">No photo uploaded.</p>
+        </div>
+      </div>
+
+      <button type="button" (click)="toggleForm()">Back to List</button>
+    </div>
+  </div>
+</div>

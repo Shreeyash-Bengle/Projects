@@ -1,0 +1,213 @@
+.main-body {
+  background: url("../../assets/company.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* Changed height to min-height for better responsiveness */
+  margin: 0;
+  padding: 20px;
+  /* Added some padding around the edges for smaller screens */
+}
+
+/* Base styles */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  /* Changed height to min-height */
+
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to right, #2980b9, #6dd5fa);
+}
+
+/* Login wrapper and card */
+.login-wrapper {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 30px;
+  /* Slightly reduced padding for smaller screens */
+  width: 100%;
+  /* Make the card take full width within its wrapper */
+  max-width: 420px;
+  /* Keep a maximum width */
+
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  backdrop-filter: blur(12px);
+  transition: 0.3s ease-in-out;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Heading */
+.login-card h2 {
+  margin-bottom: 1.2rem;
+  /* Slightly reduced margin */
+  color: #2c3e50;
+  font-size: 1.6rem;
+  /* Slightly reduced font size */
+
+  font-weight: 600;
+}
+
+/* Input groups */
+.input-group {
+  margin-bottom: 1rem;
+  /* Slightly reduced margin */
+
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  /* Slightly reduced margin */
+  font-weight: 600;
+  color: #34495e;
+  font-size: 0.95rem;
+  /* Slightly reduced font size */
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.6rem;
+  /* Slightly reduced padding */
+  border-radius: 0.75rem;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+  font-size: 0.95rem;
+  /* Slightly reduced font size */
+}
+
+.input-group input:focus {
+  border-color: #2980b9;
+  outline: none;
+}
+
+/* Login button */
+.login-btn {
+  width: 100%;
+  padding: 0.8rem;
+  /* Slightly reduced padding */
+
+  background-color: #2980b9;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  /* Slightly reduced font size */
+
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #0091ff;
+}
+
+/* Forgot password link */
+.forgot-password {
+  display: inline-block;
+  margin-top: 0.8rem;
+  /* Slightly reduced margin */
+  font-size: 0.85rem;
+  /* Slightly reduced font size */
+
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #1d6fa5;
+}
+
+/* Error message style */
+.error-msg {
+  margin-top: 0.8rem;
+  /* Slightly reduced margin */
+  color: #e74c3c;
+  font-size: 0.85rem;
+  /* Slightly reduced font size */
+
+  font-weight: 500;
+}
+
+.password-input-wrapper {
+  position: relative;
+  width: 100%; /* ✅ Add this */
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+  color: #333;
+}
+
+.password-toggle i {
+  font-size: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .login-card {
+    padding: 20px;
+    /* Further reduced padding for very small screens */
+  }
+
+  .login-card h2 {
+    font-size: 1.4rem;
+    /* Even smaller heading */
+    margin-bottom: 1rem;
+  }
+
+  .input-group label,
+  .input-group input,
+  .login-btn,
+  .forgot-password,
+  .error-msg {
+    font-size: 0.9rem;
+    /* Further reduced font sizes */
+  }
+
+  .password-input-wrapper input {
+    padding-right: 30px;
+    /* Adjust padding for icon on smaller screens */
+  }
+
+  .password-toggle mat-icon {
+    font-size: 16px;
+    /* Even smaller icon */
+  }
+}

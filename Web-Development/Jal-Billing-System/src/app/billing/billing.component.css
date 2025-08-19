@@ -1,0 +1,331 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f6fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Invoice Container */
+.invoice-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 1rem;
+  /* Add some padding around the container for better mobile view */
+}
+
+/* Header Styling */
+.invoice-header {
+  background: linear-gradient(135deg, #4b79a1, #283e51);
+  color: #fff;
+  padding: 1rem;
+  /* Adjust padding for smaller screens */
+  text-align: center;
+  /* Center the header text on smaller screens */
+}
+
+.invoice-header h2 {
+  font-size: 1.75rem;
+  /* Slightly smaller font for better fit */
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  /* Add some bottom margin */
+}
+
+/* General Info Section */
+.general-info {
+  padding: 1rem;
+  /* Adjust padding */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  /* Adjust gap */
+}
+
+.info-left,
+.info-right {
+  flex: 1;
+  min-width: 100%;
+  /* Make them full width on smaller screens */
+}
+
+/* Form Row Styles */
+.form-row {
+  margin-bottom: 0.75rem;
+  /* Adjust margin */
+  display: flex;
+  flex-direction: column;
+  /* Stack labels and inputs on smaller screens */
+  align-items: stretch;
+  /* Make inputs full width within their container */
+}
+
+.form-row label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.25rem;
+  /* Add a little space below the label */
+}
+
+.form-row input,
+.form-row textarea,
+.form-row select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+  width: 100%;
+  /* Ensure full width */
+}
+
+.form-row input:focus,
+.form-row textarea:focus,
+.form-row select:focus {
+  border-color: #4b79a1;
+  outline: none;
+}
+
+/* Bank Details Styling */
+.bank-details {
+  background: #f0f0f0;
+  padding: 0.75rem;
+  /* Adjust padding */
+  border-radius: 6px;
+  margin-top: 1rem;
+  /* Adjust margin */
+}
+
+.bank-details h4 {
+  margin-bottom: 0.25rem;
+  /* Adjust margin */
+  color: #333;
+  font-size: 1.1rem;
+  /* Slightly smaller heading */
+}
+
+.bank-details .form-row {
+  flex-direction: column;
+  /* Stack bank details on smaller screens */
+  justify-content: flex-start;
+  /* Align items to the start */
+}
+
+.bank-details .form-row label {
+  width: 100%;
+  /* Make labels full width */
+}
+
+.bank-details .form-row span {
+  display: block;
+  /* Make spans full width */
+  width: 100%;
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  /* Add spacing between bank details */
+}
+
+/* Line Items Table */
+.line-items {
+  margin-top: 1.5rem;
+  /* Adjust margin */
+  overflow-x: auto;
+  /* Enable horizontal scrolling for smaller screens */
+}
+
+.line-items table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  /* Reduce min-width for better mobile view */
+}
+
+.line-items th,
+.line-items td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  /* Reduce padding */
+  text-align: left;
+  font-size: 0.9rem;
+  /* Slightly smaller font */
+  white-space: nowrap;
+  /* Prevent text wrapping in table cells */
+}
+
+.line-items thead {
+  background-color: #f7f7f7;
+}
+
+.line-items th {
+  font-weight: 600;
+}
+
+/* Add Line Item Button */
+.add-product-row {
+  text-align: center;
+  padding: 0.75rem;
+  /* Adjust padding */
+}
+
+.add-line-item {
+  background-color: #4b79a1;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  /* Adjust padding */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  /* Slightly smaller font */
+}
+
+.add-line-item:hover {
+  background-color: #3a6382;
+}
+
+/* Invoice Footer */
+.invoice-footer {
+  display: flex;
+  flex-direction: column;
+  /* Stack footer elements on smaller screens */
+  align-items: stretch;
+  /* Make buttons full width */
+  padding: 1rem;
+  /* Adjust padding */
+  background: #f7f7f7;
+  border-top: 1px solid #ddd;
+}
+
+.invoice-footer .footer-left,
+.invoice-footer .footer-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+  /* Make them full width */
+  margin-bottom: 0.5rem;
+  /* Add some space between left and right sections */
+  justify-content: center;
+  /* Center buttons on smaller screens */
+}
+
+.invoice-footer button {
+  background-color: #4b79a1;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  /* Slightly smaller font */
+  width: 100%;
+  /* Make buttons full width on smaller screens */
+}
+
+.invoice-footer button:hover {
+  background-color: #3a6382;
+}
+
+.btn {
+  color: red;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  background-color: transparent;
+  margin: auto;
+}
+
+/* Download JSON Button */
+.download-json-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-left: 16px;
+}
+
+.download-json-btn:hover:not(:disabled) {
+  background: #1976d2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.download-json-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.download-json-btn mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive Design (adjust breakpoints as needed) */
+@media (min-width: 769px) {
+  .general-info {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .form-row {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .form-row label {
+    flex: 0 0 180px;
+    margin-bottom: 0;
+  }
+
+  .bank-details .form-row {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .bank-details .form-row label {
+    width: auto;
+  }
+
+  .bank-details .form-row span {
+    display: inline-block;
+    width: calc(50% - 10px);
+    margin-bottom: 0;
+  }
+
+  .invoice-footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .invoice-footer .footer-left,
+  .invoice-footer .footer-right {
+    width: auto;
+    margin-bottom: 0;
+    justify-content: flex-start;
+  }
+
+  .invoice-footer button {
+    width: auto;
+  }
+}

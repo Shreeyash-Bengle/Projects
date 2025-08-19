@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="header">
+    <h1>Admin Management</h1>
+    <p>Manage your admin users here.</p>
+  </div>
+  <div class="p-4">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="toggleForm()"
+      matTooltip="Add"
+      matTooltipPosition="above"
+    >
+      {{ showForm ? "Cancel" : "Add User" }}
+    </button>
+
+    <form
+      *ngIf="showForm"
+      [formGroup]="adminForm"
+      class="admin-form mt-4 mx-auto align-items-center"
+      (ngSubmit)="addAdmin()"
+    >
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" required />
+        <mat-error *ngIf="adminForm.get('username')?.hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="password"
+          required
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="togglePasswordVisibility($event)"
+          type="button"
+        >
+          <mat-icon>{{
+            hidePassword ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        <mat-error *ngIf="adminForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role" required>
+          <mat-option value="ADMIN">ADMIN</mat-option>
+          <mat-option value="SUPER_ADMIN">SUPER_ADMIN</mat-option>
+        </mat-select>
+        <mat-error *ngIf="adminForm.get('role')?.hasError('required')">
+          Role is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-row">
+        <button
+          mat-raised-button
+          color="accent"
+          type="submit"
+          [disabled]="adminForm.invalid || isLoading"
+        >
+          <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
+          <span *ngIf="!isLoading">{{
+            isEditing ? "Update User" : "Add User"
+          }}</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Loading Spinner -->
+    <mat-progress-spinner
+      *ngIf="isLoading"
+      mode="indeterminate"
+      diameter="40"
+      class="loading-spinner"
+    ></mat-progress-spinner>
+
+    <!-- No Data Message -->
+    <div *ngIf="!isLoading && admins.length === 0" class="no-data">
+      <mat-icon>inbox</mat-icon>
+      <p>No admins found</p>
+    </div>
+
+    <!-- Admin Table -->
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8 mt-4"
+      *ngIf="!isLoading && admins.length > 0"
+    >
+      <!-- Username Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef>Username</th>
+        <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+      </ng-container>
+
+      <!-- Role Column -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>Role</th>
+        <td mat-cell *matCellDef="let element">{{ element.role }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <button mat-icon-button color="primary" (click)="editAdmin(i)">
+            <mat-icon class="edit" matTooltip="Edit" matTooltipPosition="above"
+              >edit</mat-icon
+            >
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteAdmin(i)">
+            <mat-icon
+              class="delete"
+              matTooltip="Delete"
+              matTooltipPosition="above"
+              >delete</mat-icon
+            >
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

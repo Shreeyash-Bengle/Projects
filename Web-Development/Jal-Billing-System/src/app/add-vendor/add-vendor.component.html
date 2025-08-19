@@ -1,0 +1,148 @@
+<div class="add-vendor">
+  <h2>Vendor Registration</h2>
+
+  <div class="form-container">
+    <label>Vendor Name:</label>
+    <input
+      type="text"
+      [(ngModel)]="vendor.vendor_name"
+      placeholder="Enter Vendor Name"
+    />
+
+    <label>Vendor Code:</label>
+    <input
+      type="text"
+      [(ngModel)]="vendor.vendor_code"
+      placeholder="Enter Vendor Code"
+    />
+
+    <label>PAN:</label>
+    <input type="text" [(ngModel)]="vendor.pan" placeholder="Enter PAN Code" />
+
+    <label>P_NO:</label>
+    <input
+      type="text"
+      [(ngModel)]="vendor.p_no"
+      placeholder="Enter P_NO Code"
+    />
+
+    <label>Address:</label>
+    <input
+      type="text"
+      [(ngModel)]="vendor.address"
+      placeholder="Enter Address"
+    />
+
+    <label>GST Number:</label>
+    <input
+      type="text"
+      [(ngModel)]="vendor.gst_number"
+      placeholder="Enter GST Number"
+    />
+
+    <label>State:</label>
+    <input type="text" [(ngModel)]="vendor.state" placeholder="Enter State" />
+
+    <label>State Code:</label>
+    <input
+      type="text"
+      [(ngModel)]="vendor.state_code"
+      placeholder="Enter State Code"
+    />
+
+    <label>Phone Number:</label>
+    <input
+      type="text"
+      [(ngModel)]="vendor.phone_number"
+      placeholder="Enter Phone Number"
+    />
+
+    <!-- <button
+      (click)="addVendor()"
+      matTooltip="{{
+        editingIndex !== null ? 'Update vendor details' : 'Add new vendor'
+      }}"
+      matTooltipPosition="above"
+    >
+      {{ editingIndex !== null ? "Update Vendor" : "Add Vendor" }}
+    </button> -->
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="addVendor()"
+      matTooltip="{{
+        editingIndex !== null ? 'Update vendor details' : 'Add vendor'
+      }}"
+      matTooltipPosition="above"
+    >
+      {{ editingIndex !== null ? "Update Vendor" : "Add Vendor" }}
+    </button>
+  </div>
+
+  <!-- Add this search container before the table -->
+  <div class="search-container">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search Vendors</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="filterVendors()"
+        placeholder="Search by Vendor Name"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <h3>Vendor List</h3>
+  <!-- Update the table to use filteredVendors -->
+  <table *ngIf="filteredVendors.length > 0">
+    <thead>
+      <tr>
+        <th>Vendor Name</th>
+        <th>Vendor Code</th>
+        <th>PAN</th>
+        <th>P_NO</th>
+        <th>Address</th>
+        <th>GST Number</th>
+        <th>State</th>
+        <th>State Code</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let v of filteredVendors; let i = index">
+        <td>{{ v.vendor_name }}</td>
+        <td>{{ v.vendor_code }}</td>
+        <td>{{ v.pan }}</td>
+        <td>{{ v.p_no }}</td>
+        <td>{{ v.address }}</td>
+        <td>{{ v.gst_number }}</td>
+        <td>{{ v.state }}</td>
+        <td>{{ v.state_code }}</td>
+        <td>{{ v.phone_number }}</td>
+        <td>
+          <mat-icon
+            class="edit"
+            (click)="editVendor(i)"
+            matTooltip="Edit"
+            matTooltipPosition="above"
+          >
+            edit
+          </mat-icon>
+          <mat-icon
+            class="delete"
+            (click)="deleteVendor(i)"
+            matTooltip="Delete"
+            matTooltipPosition="above"
+          >
+            delete
+          </mat-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="filteredVendors.length === 0" class="no-data">No vendors found.</p>
+</div>

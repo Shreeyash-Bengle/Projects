@@ -1,0 +1,202 @@
+<div class="container">
+  <div class="sticky-header">Defective Stock Management</div>
+
+  <form (ngSubmit)="addItem()" #addItemForm="ngForm" class="add-stock-form">
+    <h3>Add Defective Stock</h3>
+
+    <div>
+      <label for="stock">Stock:</label>
+      <select
+        id="stock"
+        name="stock"
+        [(ngModel)]="newItem.stock"
+        required
+        (ngModelChange)="onDescriptionChange($event)"
+      >
+        <option value="" disabled selected>Select Stock</option>
+        <option
+          *ngFor="let stockOption of stockOptions"
+          [value]="stockOption.description"
+        >
+          {{ stockOption.description }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="stock_type">Stock Type:</label>
+      <select
+        id="stock_type"
+        name="stock_type"
+        [(ngModel)]="newItem.stock_type"
+        required
+      >
+        <option value="" disabled selected>Select Stock Type</option>
+        <option *ngFor="let type of stockTypes" [value]="type">
+          {{ type }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="defective_quantity">Defective Quantity:</label>
+      <input
+        type="number"
+        id="defective_quantity"
+        name="defective_quantity"
+        [(ngModel)]="newItem.defective_quantity"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="reusable_quantity">Reusable Quantity:</label>
+      <input
+        type="number"
+        id="reusable_quantity"
+        name="reusable_quantity"
+        [(ngModel)]="newItem.reusable_quantity"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="price">Price:</label>
+      <input
+        type="number"
+        id="price"
+        name="price"
+        [(ngModel)]="newItem.price"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="reason">Reason:</label>
+      <input
+        type="text"
+        id="reason"
+        name="reason"
+        [(ngModel)]="newItem.reason"
+        required
+      />
+    </div>
+
+    <!-- <button
+      type="submit"
+      class="add-new-stock-button"
+      [disabled]="addItemForm.invalid"
+    >
+      Add Item
+    </button> -->
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      class="add-item"
+      matTooltip="{{
+        addItemForm.invalid
+          ? 'Please fill all required fields'
+          : 'Add defective stock'
+      }}"
+      matTooltipPosition="above"
+    >
+      Add Stock
+    </button>
+  </form>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Stock</th>
+          <th>Stock Type</th>
+          <th>Defective Quantity</th>
+          <th>Reusable Quantity</th>
+          <th>Price</th>
+          <th>Reason</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of stockItems; let i = index">
+          <ng-container *ngIf="!item.isEditing; else editRow">
+            <td>{{ item.stock }}</td>
+            <td>{{ item.stock_type }}</td>
+            <td>{{ item.defective_quantity }}</td>
+            <td>{{ item.reusable_quantity }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.reason }}</td>
+            <td class="edit-buttons">
+              <mat-icon
+                class="edit"
+                (click)="editItem(i)"
+                matTooltip="Edit"
+                matTooltipPosition="above"
+                >edit</mat-icon
+              >
+              <mat-icon
+                class="delete"
+                (click)="deleteItem(i)"
+                matTooltip="Delete"
+                matTooltipPosition="above"
+                >delete</mat-icon
+              >
+            </td>
+          </ng-container>
+
+          <ng-template #editRow>
+            <td>
+              <select [(ngModel)]="item.stock">
+                <option value="" disabled>Select Stock</option>
+                <option
+                  *ngFor="let stockOption of stockOptions"
+                  [value]="stockOption.description"
+                >
+                  {{ stockOption.description }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <select [(ngModel)]="item.stock_type">
+                <option value="" disabled>Select Stock Type</option>
+                <option *ngFor="let type of stockTypes" [value]="type">
+                  {{ type }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <input type="number" [(ngModel)]="item.defective_quantity" />
+            </td>
+            <td>
+              <input type="number" [(ngModel)]="item.reusable_quantity" />
+            </td>
+            <td>
+              <input type="number" [(ngModel)]="item.price" />
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="item.reason" />
+            </td>
+            <td class="edit-buttons">
+              <mat-icon
+                class="save-btn"
+                (click)="saveItem(i)"
+                matTooltip="Save"
+                matTooltipPosition="above"
+                >save</mat-icon
+              >
+              <mat-icon
+                class="delete"
+                (click)="cancelEdit(i)"
+                matTooltip="Cancel"
+                matTooltipPosition="above"
+                >cancel</mat-icon
+              >
+            </td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

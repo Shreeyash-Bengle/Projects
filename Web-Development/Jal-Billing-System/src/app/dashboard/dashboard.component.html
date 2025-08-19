@@ -1,0 +1,245 @@
+<div class="main-dashboard">
+  <!-- Add tooltips to dashboard cards -->
+  <div class="mini-small-card-container">
+    <div
+      class="small-card card-parent-product"
+      matTooltip="Total number of parent products"
+      routerLink="/stock"
+    >
+      <p>Parent Product</p>
+      <div class="inner-small-card">
+        <h3>{{ dashboardData?.Parent_Product }}</h3>
+
+        <mat-icon>category</mat-icon>
+      </div>
+    </div>
+
+    <div
+      class="small-card card-child-product"
+      matTooltip="Total number of child products"
+      routerLink="/stock"
+    >
+      <p>Child Product</p>
+      <div class="inner-small-card">
+        <h3>{{ dashboardData?.Child_Product }}</h3>
+
+        <mat-icon>layers</mat-icon>
+      </div>
+    </div>
+
+    <div
+      class="small-card card-defective-stock"
+      matTooltip="Total defective items in stock"
+      routerLink="/def-stock"
+    >
+      <p>Defective Stock</p>
+      <div class="inner-small-card">
+        <h3>{{ dashboardData?.Defective_Stock }}</h3>
+
+        <mat-icon>warning</mat-icon>
+      </div>
+    </div>
+
+    <div
+      class="small-card card-vendor-count"
+      matTooltip="Total number of registered vendors"
+      routerLink="/add-vendor"
+    >
+      <p>Vendor Count</p>
+      <div class="inner-small-card">
+        <h3>{{ dashboardData?.Vendor }}</h3>
+
+        <mat-icon>business</mat-icon>
+      </div>
+    </div>
+
+    <div
+      class="small-card card-suppu-count"
+      matTooltip="Total number of suppliers"
+      routerLink="/supplier"
+    >
+      <p>Supplier Count</p>
+      <div class="inner-small-card">
+        <h3>{{ dashboardData?.Supplier }}</h3>
+
+        <mat-icon>local_shipping</mat-icon>
+      </div>
+    </div>
+
+    <div
+      class="small-card card-total-invoice"
+      matTooltip="Total invoices generated"
+      routerLink="/all-invoices"
+    >
+      <p>Total Generated Invoice</p>
+      <div class="inner-small-card">
+        <h3>{{ dashboardData?.Total_Invoice }}</h3>
+
+        <mat-icon>receipt_long</mat-icon>
+      </div>
+    </div>
+
+    <div
+      class="small-card card-total-invoice"
+      matTooltip="Domain and server renewal date"
+    >
+      <p>Domain and Server Renewal date</p>
+      <div class="inner-small-card">
+        <h3>5/6/25</h3>
+
+        <mat-icon>cloud</mat-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-8 col-md-12">
+        <div class="info-card">
+          <div class="card-header">
+            <h3>Important Contacts</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Names</th>
+                  <th>Mobile No</th>
+                  <th>Address</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Government</td>
+                  <td>9876543210</td>
+                  <td>Pune, Maharashtra</td>
+                </tr>
+                <tr>
+                  <td>Ward Head</td>
+                  <td>9876543210</td>
+                  <td>Pune, Maharashtra</td>
+                </tr>
+                <tr>
+                  <td>Mess</td>
+                  <td>9876543210</td>
+                  <td>Pune, Maharashtra</td>
+                </tr>
+                <tr>
+                  <td>Vegetables</td>
+                  <td>9876543210</td>
+                  <td>Pune, Maharashtra</td>
+                </tr>
+                <tr>
+                  <td>Hospital</td>
+                  <td>9876543210</td>
+                  <td>Pune, Maharashtra</td>
+                </tr>
+                <tr>
+                  <td>School</td>
+                  <td>9876543210</td>
+                  <td>Pune, Maharashtra</td>
+                </tr>
+                <tr>
+                  <td>Fire Brigade</td>
+                  <td>9876543210</td>
+                  <td>Pune, Maharashtra</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-12">
+        <div class="quick-actions-card">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Quick Actions</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <!-- Add tooltips to Quick Actions buttons -->
+              <div class="action-buttons">
+                <button
+                  routerLink="/billing"
+                  class="action-button action-button-schemes"
+                  mat-raised-button
+                  color="primary"
+                  matTooltip="Generate bill"
+                  matTooltipPosition="above"
+                >
+                  <mat-icon class="icon">receipt_long</mat-icon>
+                  <span>Create-Bill-Invoice</span>
+                </button>
+                <button
+                  class="action-button action-button-records"
+                  mat-raised-button
+                  color="accent"
+                  routerLink="/stock"
+                  matTooltip="Add new stock"
+                  matTooltipPosition="above"
+                >
+                  <mat-icon class="icon">store</mat-icon>
+                  <span>Add-New-Stock</span>
+                </button>
+                <button
+                  class="action-button action-button-funding"
+                  mat-raised-button
+                  color="primary"
+                  routerLink="/add-vendor"
+                  matTooltip="Register new vendor"
+                  matTooltipPosition="above"
+                >
+                  <mat-icon class="icon">person_add</mat-icon>
+                  <span>Add-New-Vendor</span>
+                </button>
+                <button
+                  class="action-button action-button-admission"
+                  mat-raised-button
+                  color="accent"
+                  routerLink="/supplier"
+                  matTooltip="Add supplier"
+                  matTooltipPosition="above"
+                >
+                  <mat-icon class="icon">person_add</mat-icon>
+                  <span>Add-New-Supplier</span>
+                </button>
+                <button
+                  class="action-button action-button-contacts"
+                  mat-raised-button
+                  color="warn"
+                  routerLink="/staff"
+                  matTooltip="Register new staff"
+                  matTooltipPosition="above"
+                >
+                  <mat-icon class="icon">group</mat-icon>
+                  <span>Add-New-Staff</span>
+                </button>
+                <!-- <button class="action-button action-button-settings" mat-raised-button color="secondary">
+                  <mat-icon>settings</mat-icon>
+                  <span> Settings</span>
+                </button> -->
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-footer">
+    <!-- Add tooltip to WhatsApp link -->
+    <a
+      href="https://wa.me/917517311326?text=Hello%20I'm%20visiting%20chordztechnologies.com%20and%20I'm%20interested%20to%20know%20your%20services"
+      target="_blank"
+      class="float"
+      matTooltip="Contact us"
+      matTooltipPosition="above"
+    >
+      <i class="fab fa-whatsapp my-float" style="margin-top: 15px"></i
+    ></a>
+  </div>
+
+  <div class="app-end">
+    <p class="copyright">© 2025 Chordz Technologies. All rights reserved.</p>
+  </div>
+</div>

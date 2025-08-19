@@ -1,0 +1,166 @@
+/* Main container */
+.menu {
+  background-color: #0a192f;
+  height: 100vh;
+  width: 260px;
+  /* padding: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px; */
+  padding-top: 1px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  font-family: "Roboto", sans-serif;
+  color: #ffffff;
+  /* overflow: hidden; Removes scrollbar */
+  position: fixed;
+  margin-bottom: 1rem;
+}
+
+.menu-head {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Profile section styling */
+.admin-profile {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  margin: 0.5rem;
+  border-radius: 8px;
+  gap: 1rem;
+}
+.profile-image {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profile-image mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: #fff;
+}
+
+.profile-info h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+.profile-info .role {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers items horizontally */
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1rem;
+  padding-left: 2.8rem;
+  flex: 1;
+}
+
+mat-icon {
+  color: white;
+}
+
+span {
+  color: white;
+}
+
+.menu-button {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  margin: 0.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  gap: 12px;
+  margin-top: 9px;
+  min-height: 48px;
+}
+
+.menu-button mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+.menu-button span {
+  flex: 1;
+  text-align: left;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.menu-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Style the overall dropdown panel */
+::ng-deep .mat-menu-panel {
+  min-width: 200px !important;
+  border-radius: 8px !important;
+}
+
+.menu-button[matMenuTriggerFor] {
+  justify-content: space-between;
+}
+
+.menu-button[matMenuTriggerFor] mat-icon:last-child {
+  margin-left: auto;
+  font-size: 18px;
+}
+
+/* Center dropdown menu items */
+::ng-deep .mat-menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.drop {
+  color: black;
+}
+
+.drop mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .menu-button {
+    padding: 0.6rem 1rem;
+    min-height: 42px;
+  }
+
+  .menu-button mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .menu-button span {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,295 @@
+/* Container Styles */
+.add-vendor {
+  padding: 2rem;
+  background: #f8f9fa;
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header Styles */
+h2 {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  color: #1e3c72;
+  font-size: 1.4rem;
+  margin: 2rem 0 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Form Container Styles */
+.form-container {
+  display: grid;
+  /* grid-template-columns: repeat(2, 1fr); */
+  gap: 1.25rem; /* Reduced from 2rem */
+  background: white;
+  padding: 1.5rem; /* Reduced from 2.5rem */
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem; /* Reduced from 3rem */
+}
+
+.form-group {
+  margin-bottom: 1rem; /* Reduced from 1.5rem */
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem; /* Reduced from 0.75rem */
+  color: #2c3e50;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem; /* Reduced from 0.875rem 1rem */
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  color: #2c3e50;
+  background-color: #fff;
+  margin-bottom: 0.5rem; /* Added to create space between inputs */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2a5298;
+  box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Form Actions */
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem; /* Reduced from 1rem */
+  border-top: 1px solid #e0e0e0;
+}
+
+button[type="submit"] {
+  padding: 8px 16px; /* Reduced from 0.875rem 2rem */
+  font-size: 0.9rem; /* Reduced from 1rem */
+  font-weight: 500;
+  min-width: 100px; /* Reduced from 120px */
+}
+
+/* Required Field Indicator */
+.required::after {
+  content: "*";
+  color: #f44336;
+  margin-left: 4px;
+}
+
+/* Field Hints */
+.field-hint {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: 0.25rem; /* Reduced from 0.5rem */
+}
+
+/* Error State */
+.error-field input,
+.error-field select,
+.error-field textarea {
+  border-color: #f44336;
+  background-color: rgba(244, 67, 54, 0.02);
+}
+
+.error-message {
+  color: #f44336;
+  font-size: 0.8rem;
+  margin-top: 0.25rem; /* Reduced from 0.5rem */
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+}
+
+th {
+  background: #f8f9fa;
+  color: #1e3c72;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.9rem;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Button Styles */
+button[mat-raised-button] {
+  padding: 8px 16px; /* Reduced from 12px 24px */
+  font-weight: 500;
+  font-size: 13px; /* Reduced from 14px */
+  margin-top: 1rem; /* Reduced from 1.5rem */
+  transition: all 0.3s ease;
+}
+
+button[mat-raised-button]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(42, 82, 152, 0.2);
+}
+
+/* Icon Styles */
+mat-icon {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 35px;
+  height: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 6px;
+}
+
+.edit {
+  color: #2196f3;
+  background: rgba(33, 150, 243, 0.1);
+}
+
+.edit:hover {
+  background: rgba(33, 150, 243, 0.2);
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+}
+
+.delete {
+  color: #f44336;
+  background: rgba(244, 67, 54, 0.1);
+}
+
+.delete:hover {
+  background: rgba(244, 67, 54, 0.2);
+  box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2);
+}
+
+/* No Data Message */
+.no-data {
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .form-container {
+    grid-template-columns: 1fr 1fr;
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .add-vendor {
+    padding: 1rem;
+  }
+
+  .form-container {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  td,
+  th {
+    padding: 0.75rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-container,
+table,
+.no-data {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-field {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+}
+
+/* Add this if you want to style the no results message */
+.no-results {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+}

@@ -1,0 +1,122 @@
+<div class="menu">
+  <div class="menu-head">
+    <div class="admin-profile">
+      <div class="profile-image">
+        <mat-icon>admin_panel_settings</mat-icon>
+      </div>
+      <div class="profile-info">
+        <h3 *ngIf="isSuperAdmin(); else adminBlock">SUPERADMIN</h3>
+        <ng-template #adminBlock>
+          <h3 *ngIf="isAdmin()">ADMIN</h3>
+        </ng-template>
+
+        <span class="role">Administrator</span>
+      </div>
+    </div>
+  </div>
+  <div class="menu-item">
+    <!-- Dashboard Button -->
+    <button mat-button class="menu-button text-white" routerLink="/dashboard">
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </button>
+
+    <!-- Staff Button -->
+    <button mat-button class="menu-button text-white" routerLink="/staff">
+      <mat-icon>people</mat-icon>
+      <span>Staff</span>
+    </button>
+
+    <!-- Stocks Dropdown -->
+    <button
+      mat-button
+      class="menu-button text-white"
+      [matMenuTriggerFor]="StaffMenu"
+    >
+      <!-- <mat-icon>people</mat-icon> -->
+      <span>Stocks</span>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #StaffMenu="matMenu">
+      <button mat-menu-item class="drop" routerLink="/stock">
+        <mat-icon class="drop">layers</mat-icon>
+        <span class="drop">Main-Stock</span>
+      </button>
+      <button class="drop" mat-menu-item routerLink="/def-stock">
+        <mat-icon class="drop">layers</mat-icon>
+        <span class="drop">Def-Stock</span>
+      </button>
+    </mat-menu>
+
+    <!-- Report Button (Only for SuperAdmin) -->
+    <button
+      *ngIf="isSuperAdmin()"
+      mat-button
+      class="menu-button text-white"
+      routerLink="/report"
+    >
+      <mat-icon>report</mat-icon>
+      <span>Reports</span>
+    </button>
+
+    <button mat-button class="menu-button text-white" routerLink="/billing">
+      <mat-icon>receipt_long</mat-icon>
+      <span>Billing</span>
+    </button>
+
+    <!-- Angular Material Dropdown -->
+    <button
+      mat-button
+      class="menu-button text-white"
+      [matMenuTriggerFor]="vendorMenu"
+    >
+      <!-- <mat-icon>people</mat-icon> -->
+      <span>Forms</span>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #vendorMenu="matMenu">
+      <button mat-menu-item class="drop" routerLink="/add-vendor">
+        <mat-icon class="drop">person_add</mat-icon>
+        <span class="drop">Vendor</span>
+      </button>
+      <button class="drop" mat-menu-item routerLink="/supplier">
+        <mat-icon class="drop">person_add</mat-icon>
+        <span class="drop">Supplier</span>
+      </button>
+      <button class="drop" mat-menu-item routerLink="/consignee">
+        <mat-icon class="drop">person_add</mat-icon>
+        <span class="drop">Consignee</span>
+      </button>
+    </mat-menu>
+
+    <!-- <button mat-button class="menu-button text-white" routerLink="/add-vendor">
+      <mat-icon>people</mat-icon>
+      <span>Vendor</span>
+    </button> -->
+
+    <button mat-button class="menu-button text-white" routerLink="/e-invoice">
+      <mat-icon>receipt </mat-icon>
+      <span>E-Invoice</span>
+    </button>
+
+    <!-- <button mat-button class="menu-button text-white" routerLink="/e-invoice">
+      <mat-icon>receipt </mat-icon>
+      <span>E-Invoice</span>
+    </button> -->
+
+    <button
+      mat-button
+      class="menu-button text-white"
+      routerLink="/add-user"
+      *ngIf="isSuperAdmin()"
+    >
+      <mat-icon>admin_panel_settings</mat-icon>
+      <span>All Admin</span>
+    </button>
+
+    <!-- <button mat-button class="menu-button text-white" (click)="logout()">
+      <mat-icon>settings</mat-icon>
+      <span>Logout</span>
+    </button> -->
+  </div>
+</div>
